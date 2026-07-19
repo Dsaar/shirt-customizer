@@ -8,11 +8,16 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
 app.use(
 	cors({
-		origin: "https://shirt-customizer-d2w67kv6l-dsaars-projects.vercel.app",
+		origin: (origin, callback) => {
+			console.log("Request origin:", origin);
+			callback(null, true);
+		},
 	})
-); 
+);
+
 
 app.use(express.json({ limig: "50mb" }))
 
